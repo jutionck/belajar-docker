@@ -1,0 +1,46 @@
+#cek version yang paling baru
+version: "3.7"
+
+services:
+  #container
+  mongo:
+    container_name: mongo
+    image: mongo:4.4.2
+    ports:
+    - 27017:27017
+    #integrasi network
+    networks:
+      - myjava_network
+  redis:
+    container_name: redis
+    image: redis:5
+    ports:
+    - 6379:6379
+    #integrasi network
+    networks:
+      - myjava_network
+  #container aplikasi kita
+  my-java:
+    container_name: my-java
+    image: my-java:1.0
+    ports:
+    - 8181:8181
+    #ini untuk set docker container ini butuh container lain untuk jalan
+    depends_on:
+      - redis
+      - mongo
+    #kalo ada environment
+    environment:
+      - NAME=My Java
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    #integrasi network
+    networks:
+      - myjava_network
+#untuk network
+networks:
+  #nama network
+  myjava_network:
+    name: myjava_network
