@@ -51,9 +51,9 @@ docker images
 
 Disini saya mencoba untuk mendownload image mongo, caranya adalah ketik ini:
 ```
-docker pull mango
+docker pull mongo
 ```
-Secara default akan mendownload image versi/tags terakhir, tetapi jika kita ingin mendownload yang tertntu tinggal ketik ini aja:
+Secara default akan mendownload image versi/tags terakhir, tetapi jika kita ingin mendownload tag tertentu tinggal ketik ini aja:
 ```
 docker pull mongo:4.4.2
 ```
@@ -87,6 +87,7 @@ docker container rm namaconatiner
 
 #### Menghapus Image
 Untuk menghapus silahkan cek dulu containernya masih di pakai atau tidak, kalo masih running silahkan stop dulu. Kemudian hapus container nya.
+Lalu lakukan ini:
 ```
 docker image rm namaconatiner
 ```
@@ -110,17 +111,17 @@ func main() {
 }
 
 ```
-Kemudian coba run dengan mengetikkan perintah:
+Kemudian coba run dengan mengetikkan perintah, di terminal IDE atau terminal bawaan sistem operasi:
 ```go
 go run main.go
 ```
-Setelah itu buka browser, jalankan:
+Setelah itu buka browser, ketik:
 ```
 localhost:8080
 ```
 Jika berhasil pesan yang tampil adalah **Hello World**
 
-Silahkan membuat file dengan nama **Dockerfile** lalu ketik seperti di bawah ini:
+Lanjut: silahkan membuat file dengan nama **Dockerfile** lalu ketik seperti di bawah ini:
 ```
 #image yang udah ada local kita
 FROM golang:alpine
@@ -135,7 +136,7 @@ Selanjutnya, kita build image nya dengan cara:
 ```
 docker build --tag app-golang:1.0 .
 ```
-Maksdunya adalah --tag app-golang:1.0 adalah pemberian nama imagenya, kemudian . adalah direktori yang ada saat running ini.
+Maksdunya --tag app-golang:1.0 adalah pemberian nama imagenya, kemudian . adalah direktori yang ada saat buat image.
 Jika berhasil akan keluar informasi seperti ini:
 ```
 Sending build context to Docker daemon  3.072kB
@@ -150,11 +151,15 @@ Removing intermediate container 9c25f3102f2c
 Successfully built c9cb7bbcb1ec
 Successfully tagged app-golang:1.0
 ```
-Selanjutnya: kita cek apakah sudah ada image nya, jika sudah kita buat containernya:
+Selanjutnya: kita cek apakah sudah ada image nya:
+```
+docker images
+```
+Jika sudah kita buat containernya:
 ```
 docker container create --name app1 -p 8080:8080 app-golang:1.0
 ```
-Run:
+Jalankan container:
 ```
 docker container start app1
 ```
@@ -165,16 +170,19 @@ localhost:8080
 
 #### Push Image Dari Dockerfile ke Registry (DockerHub)
 1. Buka dan login di https://hub.docker.com/
-2. Buat Repository baru, disini saya buat dengan nama `jutionck/app-golang` kalo kalian bebas ya.
+2. Buat Repository baru, disini saya buat dengan nama `jutionck/app-golang` kalo kalian silahkan sesuaikan ya.
 3. Login dulu (buka di terminal tadi) kemudian ketik ini:
     ```
    docker login
    ```
    Masukkan username dan password nya
 4. Push image nya dengan cara seperti ini ya:
+    Pertama ketik ini dulu:
     ```
    docker tag app-golang:1.0 jutionck/app-golang:1.0
-   
+   ```
+   Baru ketik ini ya:
+   ```
    docker push jutionck/app-golang:1.0
    ```
 5. Selesai.
