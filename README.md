@@ -327,3 +327,7 @@ Ketikkan perintah:
 ```
 docker system prune -a --volumes
 ```
+
+
+Referensi:
+https://www.youtube.com/playlist?list=PL-CtdCApEFH-A7jBmdertzbeACuQWvQao
