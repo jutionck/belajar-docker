@@ -58,6 +58,21 @@ Secara default akan mendownload image versi/tags terakhir, tetapi jika kita ingi
 docker pull mongo:4.4.2
 ```
 
+#### Build Image From Dockerfile
+1. Buat sebuah file `Dockerfile`
+2. Untuk lebih jelas bisa cek di folder `contoh-app/Dockerfile`
+3. Setelah di buat sekarang kita akan membuat image nya dengan cara sebagai berikut:
+    ```
+    docker build -t golang-api:1.0 .
+    ```
+4. Tunggu proses hingga selesai
+5. `golang-api:1.0` adalah nama image nya dan tag nya ya jadi sesuaikan saja
+6. Cek image yang sudah di buat dengan cara
+    ```
+    docker image ls
+    ```
+7. Selesai membuat image melalui Dockerfile.
+
 #### Membuat Container
 1. Setelah image mongo tadi selesai didownload, sekarang kita buat sebuah container
 dengan cara:
